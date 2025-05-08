@@ -5,19 +5,22 @@ sudo apt update
 sudo apt install podman -y
 
 # Mengunduh file yang dibutuhkan
-# wget file 1
-# wget file 2
-# wget file 3
+# wget file1
+# wget file2
+# wget file3
 
-# Chmod file yang telah di unduh
-# chmod 777 file 1
-# chmod +x file 2
-# chmod +rwx file 3
+# Pindahkan file sekalian rename, ke $HOME/podmanager/bin
+# mv file1
+# mv file2
+# mv file3
 
-# Memindahkan file ke /usr/bin
-# mv file1.sh /usr/bin
-# mv file2.sh /usr/bin
-# mv file3.sh /usr/bin
+# Chmod semua file
+# chmod file1
+# chmod file2
+# chmod file3
+
+# Masukkan direktori bin podmanager ke PATH
+# echo export path ke $HOME/.profile
 
 clear
 echo "Setup sudah selesai, ketik 'podmanager' untuk membuka menu."
