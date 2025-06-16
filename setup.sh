@@ -2,7 +2,7 @@
 sudo apt update
 
 # Install paket yang dibutuhkan
-sudo apt install podman -y
+sudo apt install podman uidmap -y
 
 # Mengunduh file yang dibutuhkan
 # wget file1
