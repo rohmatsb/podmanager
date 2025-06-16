@@ -28,14 +28,12 @@ while true; do
 
     # Sortir input
     case $pilihan in
-    1) clear && create-container ; break ;;
-    2) clear && list-container ; break ;;
-    3) clear && delete-container ; break ;;
+    1) clear && podmanager-create-container ; break ;;
+    2) clear && podmanager-list-container ; break ;;
+    3) clear && podmanager-delete-container ; break ;;
     4) exit ;;
     *) clear && echo "Silakan masukkan pilihan yang benar!" && sleep 3 && clear ;;
-
-    # Menutup case
-    esac
+    esac # Menutup case
 
 # Menutup while-true
 done
