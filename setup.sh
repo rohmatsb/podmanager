@@ -2,7 +2,7 @@
 sudo apt update
 
 # Install paket yang dibutuhkan
-sudo apt install podman uidmap -y
+sudo apt install podman uidmap slirp4netns -y
 
 # Mengunduh file yang dibutuhkan
 # wget file1
