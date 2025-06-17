@@ -21,7 +21,8 @@ while true; do
     echo "3. Centos latest"
     echo "4. Alpine latest"
     echo "5. RockyLinux latest"
- 
+    echo ""
+    echo "==============="
 
     # Menerima input user
     read -p "Enter number : " pilihan
