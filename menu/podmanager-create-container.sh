@@ -6,7 +6,7 @@ while true; do
 
 # Menampilkan menu
 echo "========"
-echo "Create container
+echo "Create container"
 echo "========"
 echo ""
 read -p "Enter container name : " nama_container
