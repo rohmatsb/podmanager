@@ -49,8 +49,11 @@ while true; do
     ### Meneruskan nilai nama container
     if is_valid_podman_container_name "$nama_container"; then
     echo "'$nama_container' is a valid name."
+    sleep 5
+    break
     else
     echo "'$nama_container' is NOT a valid name."
+    sleep 5
     fi
 
 done
