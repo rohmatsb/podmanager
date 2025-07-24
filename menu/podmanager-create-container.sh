@@ -20,12 +20,14 @@ while true; do
     # 1. Check for empty input
     if [[ -z "$name" ]]; then
         echo "Error: Name cannot be empty."
+        echo ""
         return 1
     fi
 
     # 2. Check length
     if [[ ${#name} -gt $max_length ]]; then
         echo "Error: Name '$name' is too long (max $max_length characters)."
+        echo ""
         return 1
     fi
 
@@ -33,7 +35,9 @@ while true; do
     # Regex: Must start with alphanumeric, followed by alphanumeric, hyphens, underscores, or dots.
     if [[ ! "$name" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]]; then
         echo "Error: Name '$name' contains invalid characters or has an invalid start."
+        echo ""
         echo "Allowed: alphanumeric, hyphens, underscores, dots. Must start with alphanumeric."
+        echo ""
         return 1
     fi
 
