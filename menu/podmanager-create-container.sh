@@ -1,3 +1,13 @@
+# Color
+NC='\e[0m' # No Color (reset)
+RED='\e[0;31m'
+GREEN='\e[0;32m'
+YELLOW='\e[0;33m'
+BLUE='\e[0;34m'
+MAGENTA='\e[0;35m'
+CYAN='\e[0;36m'
+WHITE='\e[0;37m'
+
 # Menggunakan while-true agar terjadi pengulangan jika nilai yang dimasukkan pengguna salah
 while true; do
 
@@ -19,14 +29,14 @@ while true; do
 
     # 1. Check for empty input
     if [[ -z "$name" ]]; then
-        echo "Error: Name cannot be empty."
+        echo "${RED}Error: Name cannot be empty.${RED}"
         echo ""
         return 1
     fi
 
     # 2. Check length
     if [[ ${#name} -gt $max_length ]]; then
-        echo "Error: Name '$name' is too long (max $max_length characters)."
+        echo "${RED}Error: Name '$name' is too long (max $max_length characters).${RED}"
         echo ""
         return 1
     fi
@@ -34,8 +44,8 @@ while true; do
     # 3. Check allowed characters and start character
     # Regex: Must start with alphanumeric, followed by alphanumeric, hyphens, underscores, or dots.
     if [[ ! "$name" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]]; then
-        echo "Error: Name '$name' contains invalid characters or has an invalid start."
-        echo "Allowed: alphanumeric, hyphens, underscores, dots. Must start with alphanumeric."
+        echo "${RED}Error: Name '$name' contains invalid characters or has an invalid start."
+        echo "Allowed: alphanumeric, hyphens, underscores, dots. Must start with alphanumeric.${RED}"
         echo ""
         return 1
     fi
@@ -51,11 +61,11 @@ while true; do
 
     ### Meneruskan nilai nama container
     if is_valid_podman_container_name "$nama_container"; then
-    echo "'$nama_container' is a valid name."
+    echo "${GREEN}'$nama_container' is a valid name.${GREEN}"
     sleep 5
     break
     else
-    echo "'$nama_container' is NOT a valid name."
+    echo "${RED}'$nama_container' is NOT a valid name.${RED}"
     sleep 5
     fi
 
