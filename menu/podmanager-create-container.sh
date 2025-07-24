@@ -82,4 +82,21 @@ while true; do
     echo "Create container"
     echo "========"
     echo ""
-    echo "
+    echo "Do you want to forward port?"
+    read -p "Yes or No : " yn_portforward
+
+    # Mendefinisikan fungsi kalo forward port
+    function yes_portforward() {
+        
+    }
+
+    # Mendefinisikan fungsi cek port
+
+    # Tanya apakah ingin port forward
+    if [[ "${yn_portforward}" == "Yes" ]]; then
+        # isi dengan function
+    elif [[ "${yn_portforward}" == "No" ]]; then
+        # isi dengan function
+    else
+        # 
+    fi
