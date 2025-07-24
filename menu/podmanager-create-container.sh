@@ -29,14 +29,14 @@ while true; do
 
     # 1. Check for empty input
     if [[ -z "$name" ]]; then
-        echo -e "${RED}Error: Name cannot be empty.${RED}"
+        echo -e "${RED}Error: Name cannot be empty.${NC}"
         echo ""
         return 1
     fi
 
     # 2. Check length
     if [[ ${#name} -gt $max_length ]]; then
-        echo -e "${RED}Error: Name '$name' is too long (max $max_length characters).${RED}"
+        echo -e "${RED}Error: Name '$name' is too long (max $max_length characters).${NC}"
         echo ""
         return 1
     fi
@@ -45,7 +45,7 @@ while true; do
     # Regex: Must start with alphanumeric, followed by alphanumeric, hyphens, underscores, or dots.
     if [[ ! "$name" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]]; then
         echo -e "${RED}Error: Name '$name' contains invalid characters or has an invalid start."
-        echo -e "Allowed: alphanumeric, hyphens, underscores, dots. Must start with alphanumeric.${RED}"
+        echo -e "Allowed: alphanumeric, hyphens, underscores, dots. Must start with alphanumeric.${NC}"
         echo ""
         return 1
     fi
@@ -61,11 +61,11 @@ while true; do
 
     ### Meneruskan nilai nama container
     if is_valid_podman_container_name "$nama_container"; then
-    echo -e "${GREEN}'$nama_container' is a valid name.${GREEN}"
+    echo -e "${GREEN}'$nama_container' is a valid name.${NC}"
     sleep 5
     break
     else
-    echo -e "${RED}'$nama_container' is NOT a valid name.${RED}"
+    echo -e "${RED}'$nama_container' is NOT a valid name.${NC}"
     sleep 5
     fi
 
