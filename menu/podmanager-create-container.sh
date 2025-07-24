@@ -70,3 +70,16 @@ while true; do
     fi
 
 done
+
+# While-true lagi, untuk input port yang diinginkan
+while true; do
+
+    # clear dulu
+    clear
+
+    # Menampilkan menu
+    echo "========"
+    echo "Create container"
+    echo "========"
+    echo ""
+    echo "
