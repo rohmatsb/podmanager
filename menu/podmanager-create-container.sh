@@ -35,7 +35,6 @@ while true; do
     # Regex: Must start with alphanumeric, followed by alphanumeric, hyphens, underscores, or dots.
     if [[ ! "$name" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]]; then
         echo "Error: Name '$name' contains invalid characters or has an invalid start."
-        echo ""
         echo "Allowed: alphanumeric, hyphens, underscores, dots. Must start with alphanumeric."
         echo ""
         return 1
