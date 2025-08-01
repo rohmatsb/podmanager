@@ -85,18 +85,34 @@ while true; do
     echo "Do you want to forward port?"
     read -p "Yes or No : " yn_portforward
 
-    # Mendefinisikan fungsi kalo forward port
-    function yes_portforward() {
-        
+    ## Definisikan fungsi-fungsi ##
+
+    # Definisikan fungsi, menanyakan berapa banyak port yang ingin di forward
+    berapa_port() {
+        # Isi disini
     }
 
-    # Mendefinisikan fungsi cek port
+    # Definisikan fungsi cek port
+    check_port() {
+        local port=$1
 
-    # Tanya apakah ingin port forward
-    if [[ "${yn_portforward}" == "Yes" ]]; then
-        # isi dengan function
-    elif [[ "${yn_portforward}" == "No" ]]; then
-        # isi dengan function
-    else
-        # 
-    fi
+        # Return 1 (failure) if the port input is invalid.
+        if [[ -z "$port" ]] || ! [[ "$port" =~ ^[0-9]+$ ]] || (( port < 1 || port > 65535 )); then
+            return 1
+        fi
+
+        # The `if !` inverts the check. The block now runs if lsof FAILS (i.e., port is available).
+        if ! lsof -i :"$port" >/dev/null 2>&1; then
+            return 0 # Success: Port is available.
+        else
+            return 1 # Failure: Port is in use.
+        fi
+
+        # Cara pakai fungsi nanti
+        # check_port 80
+        # check_port 443
+        # return exit code 1 atau 0
+    }
+
+    ## Selesai mendefinisikan fungsi-fungsi ##
+
