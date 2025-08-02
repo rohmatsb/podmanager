@@ -8,22 +8,22 @@ MAGENTA='\e[0;35m'
 CYAN='\e[0;36m'
 WHITE='\e[0;37m'
 
-# Menggunakan while-true agar terjadi pengulangan jika nilai yang dimasukkan pengguna salah
-while true; do
+#############################################
+#### Mendefinisikan fungsi-fungsi global ####
+#############################################
 
-    # clear dulu
-    clear
-
-    # Menampilkan menu
+# Menu input nama container
+input_container_name() {
     echo "========"
     echo "Create container"
     echo "========"
     echo ""
     read -p "Enter container name : " nama_container
     echo ""
-    
-    ### Validasi nama container
-    function is_valid_podman_container_name() {
+}
+
+# Fungsi validasi nama container
+function is_valid_podman_container_name() {
     local name="$1"
     local max_length=63
 
@@ -57,7 +57,52 @@ while true; do
     #fi
 
     return 0 # All checks passed, name is valid
-    }
+}
+
+# Apakah ingin forward port (menu tanya)
+menu_tanya_forward_port() {
+    echo "========"
+    echo "Create container"
+    echo "========"
+    echo ""
+    echo "Do you want to forward port?"
+    read -p "Yes or No : " yn_portforward
+}
+
+# Validasi port tersedia
+check_port() {
+    local port=$1
+
+    # Return 1 (failure) if the port input is invalid.
+    if [[ -z "$port" ]] || ! [[ "$port" =~ ^[0-9]+$ ]] || (( port < 1 || port > 65535 )); then
+        return 1
+    fi
+
+    # The `if !` inverts the check. The block now runs if lsof FAILS (i.e., port is available).
+    if ! lsof -i :"$port" >/dev/null 2>&1; then
+        return 0 # Success: Port is available.
+    else
+        return 1 # Failure: Port is in use.
+    fi
+
+    # Cara pakai fungsi nanti
+    # check_port 80
+    # check_port 443
+    # return exit code 1 atau 0
+}
+
+##############################################
+#### Selesai mendefinisikan fungsi global ####
+##############################################
+
+# Menggunakan while-true agar terjadi pengulangan jika nilai yang dimasukkan pengguna salah
+while true; do
+
+    # clear dulu
+    clear
+
+    # Menampilkan menu
+    input_container_name
 
     ### Meneruskan nilai nama container
     if is_valid_podman_container_name "$nama_container"; then
@@ -78,41 +123,6 @@ while true; do
     clear
 
     # Menampilkan menu
-    echo "========"
-    echo "Create container"
-    echo "========"
-    echo ""
-    echo "Do you want to forward port?"
-    read -p "Yes or No : " yn_portforward
+    menu_tanya_forward_port
 
-    ## Definisikan fungsi-fungsi ##
-
-    # Definisikan fungsi, menanyakan berapa banyak port yang ingin di forward
-    berapa_port() {
-        # Isi disini
-    }
-
-    # Definisikan fungsi cek port
-    check_port() {
-        local port=$1
-
-        # Return 1 (failure) if the port input is invalid.
-        if [[ -z "$port" ]] || ! [[ "$port" =~ ^[0-9]+$ ]] || (( port < 1 || port > 65535 )); then
-            return 1
-        fi
-
-        # The `if !` inverts the check. The block now runs if lsof FAILS (i.e., port is available).
-        if ! lsof -i :"$port" >/dev/null 2>&1; then
-            return 0 # Success: Port is available.
-        else
-            return 1 # Failure: Port is in use.
-        fi
-
-        # Cara pakai fungsi nanti
-        # check_port 80
-        # check_port 443
-        # return exit code 1 atau 0
-    }
-
-    ## Selesai mendefinisikan fungsi-fungsi ##
-
+    #
