@@ -13,7 +13,7 @@ WHITE='\e[0;37m'
 #############################################
 
 # Menu input nama container
-input_container_name() {
+function input_container_name() {
     echo "========"
     echo "Create container"
     echo "========"
@@ -60,7 +60,7 @@ function is_valid_podman_container_name() {
 }
 
 # Apakah ingin forward port (menu tanya)
-menu_tanya_forward_port() {
+function menu_tanya_forward_port() {
     echo "========"
     echo "Create container"
     echo "========"
@@ -70,7 +70,7 @@ menu_tanya_forward_port() {
 }
 
 # Validasi port tersedia
-check_port() {
+function check_port() {
     local port=$1
 
     # Return 1 (failure) if the port input is invalid.
@@ -124,5 +124,14 @@ while true; do
 
     # Menampilkan menu
     menu_tanya_forward_port
+
+    # if-else apakah mau port forward
+    if [[ "${yn_portforward,,}" == "yes" || "${yn_portforward,,}" == "y" ]]; then
+        # fungsi menu masukkan port
+    elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
+        # lanjut fungsi selanjutnya
+    else
+        clear
+    fi
 
     #
