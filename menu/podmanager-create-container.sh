@@ -22,6 +22,7 @@ port_host_2=""
 
 # Menu input nama container
 function input_container_name() {
+    clear
     echo "========"
     echo "Create container"
     echo "========"
@@ -69,6 +70,7 @@ function is_valid_podman_container_name() {
 
 # Apakah ingin forward port (menu tanya)
 function menu_tanya_forward_port() {
+    clear
     echo "========"
     echo "Create container"
     echo "========"
@@ -82,6 +84,7 @@ function menu_tanya_forward_port() {
 function menu_input_port_1() {
 
     while true; do
+        clear
         echo "========"
         echo "Create container"
         echo "========"
@@ -118,6 +121,7 @@ function menu_input_port_1() {
 function menu_input_port_2() {
 
     while true; do
+        clear
         echo "========"
         echo "Create container"
         echo "========"
@@ -153,10 +157,9 @@ function menu_input_port_2() {
 
 # Konfirmasi apakah lanjut forward port lain
 function lanjut_port_forward() {
-    clear
 
     while true; do
-
+        clear
         echo "========"
         echo "Create container"
         echo "========"
