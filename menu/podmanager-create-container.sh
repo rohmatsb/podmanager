@@ -8,6 +8,14 @@ MAGENTA='\e[0;35m'
 CYAN='\e[0;36m'
 WHITE='\e[0;37m'
 
+#### Deklarasi Variabel Global ####
+nama_container=""
+port_container_1=""
+port_container_2=""
+port_host_1=""
+port_host_2=""
+#### Selesai Deklarasi Variabel Global ####
+
 #############################################
 #### Mendefinisikan fungsi-fungsi global ####
 #############################################
@@ -88,7 +96,6 @@ function menu_input_port_1() {
         if check_port_container ${port_container_1}; then
             echo "Port container is valid, continue..."
             sleep 3
-            break
         else
             echo "Port container invalid, please re-enter!"
             sleep 3
@@ -125,7 +132,6 @@ function menu_input_port_2() {
         if check_port_container ${port_container_2}; then
             echo "Port container is valid, continue..."
             sleep 3
-            break
         else
             echo "Port container invalid, please re-enter!"
             sleep 3
@@ -157,11 +163,9 @@ function lanjut_port_forward() {
     echo "Forward port lain?"
     read -p "Yes or No : " yn_lanjut_port_forward
 
-    if [[ "${yn_portforward,,}" == "yes" || "${yn_portforward,,}" == "y" ]]; then
-        break
+    if [[ "${yn_lanjut_port_forward,,}" == "yes" || "${yn_lanjut_port_forward,,}" == "y" ]]; then
         return 0
-    elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
-        break
+    elif [[ "${yn_lanjut_port_forward,,}" == "no" || "${yn_lanjut_port_forward,,}" == "n" ]]; then
         return 1
     else
         echo "Invalid, masukkan pilihan yang benar!"
@@ -246,14 +250,14 @@ while true; do
         # Tampilkan menu pertama
         menu_input_port_1
         
-        # lanjut port forward?
-        lanjut_port_forward
-
         # if-else lanjut atau tidak
         if lanjut_port_forward; then
             menu_input_port_2
         fi
-        
+
+        # selesai
+        break
+
     elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
         # entah belum tau
     else
