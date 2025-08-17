@@ -156,21 +156,24 @@ function lanjut_port_forward() {
     clear
 
     while true; do
-    echo "========"
-    echo "Create container"
-    echo "========"
-    echo ""
-    echo "Forward port lain?"
-    read -p "Yes or No : " yn_lanjut_port_forward
+    
+        echo "========"
+        echo "Create container"
+        echo "========"
+        echo ""
+        echo "Forward port lain?"
+        read -p "Yes or No : " yn_lanjut_port_forward
 
-    if [[ "${yn_lanjut_port_forward,,}" == "yes" || "${yn_lanjut_port_forward,,}" == "y" ]]; then
-        return 0
-    elif [[ "${yn_lanjut_port_forward,,}" == "no" || "${yn_lanjut_port_forward,,}" == "n" ]]; then
-        return 1
-    else
-        echo "Invalid, masukkan pilihan yang benar!"
-        continue
-    fi     
+        if [[ "${yn_lanjut_port_forward,,}" == "yes" || "${yn_lanjut_port_forward,,}" == "y" ]]; then
+            return 0
+        elif [[ "${yn_lanjut_port_forward,,}" == "no" || "${yn_lanjut_port_forward,,}" == "n" ]]; then
+            return 1
+        else
+            echo "Invalid, masukkan pilihan yang benar!"
+            continue
+        fi
+
+    done     
 }
 
 # Validasi port inside container
