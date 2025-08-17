@@ -156,7 +156,7 @@ function lanjut_port_forward() {
     clear
 
     while true; do
-    
+
         echo "========"
         echo "Create container"
         echo "========"
@@ -262,7 +262,7 @@ while true; do
         break
 
     elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
-        # entah belum tau
+        clear
     else
         clear
     fi
