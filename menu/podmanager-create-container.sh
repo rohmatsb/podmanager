@@ -69,8 +69,123 @@ function menu_tanya_forward_port() {
     read -p "Yes or No : " yn_portforward
 }
 
-# Validasi port tersedia
-function check_port() {
+# Menu Input Port
+
+function menu_input_port_1() {
+
+    while true; do
+        echo "========"
+        echo "Create container"
+        echo "========"
+        echo ""
+        echo "Masukkan port yang ingin kamu forward (port inside container)"
+        read -p "Input port : " port_container_1
+        echo ""
+        echo "Masukkan port host machine (port outside container)"
+        read -p "Input port : " port_host_1
+
+        # Validasi port container
+        if check_port_container ${port_container_1}; then
+            echo "Port container is valid, continue..."
+            sleep 3
+            break
+        else
+            echo "Port container invalid, please re-enter!"
+            sleep 3
+            continue
+        fi
+
+        # Validasi port host
+        if check_port_host ${port_host_1}; then
+            echo "Port host is valid, continue..."
+            sleep 3
+            break
+        else
+            echo "Port host is invalid, please re-enter!"
+            sleep 3
+            continue
+        fi
+    done
+}
+
+function menu_input_port_2() {
+
+    while true; do
+        echo "========"
+        echo "Create container"
+        echo "========"
+        echo ""
+        echo "Masukkan port yang ingin kamu forward (port inside container)"
+        read -p "Input port : " port_container_2
+        echo ""
+        echo "Masukkan port host machine (port outside container)"
+        read -p "Input port : " port_host_2
+
+        # Validasi port container
+        if check_port_container ${port_container_2}; then
+            echo "Port container is valid, continue..."
+            sleep 3
+            break
+        else
+            echo "Port container invalid, please re-enter!"
+            sleep 3
+            continue
+        fi
+
+        # Validasi port host
+        if check_port_host ${port_host_2}; then
+            echo "Port host is valid, continue..."
+            sleep 3
+            break
+        else
+            echo "Port host is invalid, please re-enter!"
+            sleep 3
+            continue
+        fi
+    done
+}
+
+# Konfirmasi apakah lanjut forward port lain
+function lanjut_port_forward() {
+    clear
+
+    while true; do
+    echo "========"
+    echo "Create container"
+    echo "========"
+    echo ""
+    echo "Forward port lain?"
+    read -p "Yes or No : " yn_lanjut_port_forward
+
+    if [[ "${yn_portforward,,}" == "yes" || "${yn_portforward,,}" == "y" ]]; then
+        break
+        return 0
+    elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
+        break
+        return 1
+    else
+        echo "Invalid, masukkan pilihan yang benar!"
+        continue
+    fi     
+}
+
+# Validasi port inside container
+function check_port_container() {
+    local port=$1
+
+    # Return 1 (failure) if the port input is invalid.
+    if [[ -z "$port" ]] || ! [[ "$port" =~ ^[0-9]+$ ]] || (( port < 1 || port > 65535 )); then
+        return 1
+    fi
+
+    # Cara pakai fungsi nanti
+    # check_port_container 80
+    # check_port_container 443
+    # return exit code 1 atau 0
+}
+
+# Validasi port host
+function check_port_host() {
     local port=$1
 
     # Return 1 (failure) if the port input is invalid.
@@ -86,8 +201,8 @@ function check_port() {
     fi
 
     # Cara pakai fungsi nanti
-    # check_port 80
-    # check_port 443
+    # check_port_host 80
+    # check_port_host 443
     # return exit code 1 atau 0
 }
 
@@ -116,7 +231,7 @@ while true; do
 
 done
 
-# While-true lagi, untuk input port yang diinginkan
+# While-true lagi, untuk menanyakan apakah lanjut port forward
 while true; do
 
     # clear dulu
@@ -127,11 +242,22 @@ while true; do
 
     # if-else apakah mau port forward
     if [[ "${yn_portforward,,}" == "yes" || "${yn_portforward,,}" == "y" ]]; then
-        # fungsi menu masukkan port
+        
+        # Tampilkan menu pertama
+        menu_input_port_1
+        
+        # lanjut port forward?
+        lanjut_port_forward
+
+        # if-else lanjut atau tidak
+        if lanjut_port_forward; then
+            menu_input_port_2
+        fi
+        
     elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
-        # lanjut fungsi selanjutnya
+        # entah belum tau
     else
         clear
     fi
 
-    #
+done
