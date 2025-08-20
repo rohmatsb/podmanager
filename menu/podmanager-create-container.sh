@@ -102,21 +102,21 @@ function menu_input_port_1() {
 
         # Validasi port container
         if check_port_container ${port_container_1}; then
-            echo "${GREEN}Port container is valid, continue...${NC}"
+            echo -e "${GREEN}Port container is valid, continue...${NC}"
             sleep 3
         else
-            echo "${RED}Port container invalid, please re-enter!${NC}"
+            echo -e "${RED}Port container invalid, please re-enter!${NC}"
             sleep 3
             continue
         fi
 
         # Validasi port host
         if check_port_host ${port_host_1}; then
-            echo "${GREEN}Port host is valid, continue...${NC}"
+            echo -e "${GREEN}Port host is valid, continue...${NC}"
             sleep 3
             break
         else
-            echo "${RED}Port host is invalid, please re-enter!${NC}"
+            echo -e "${RED}Port host is invalid, please re-enter!${NC}"
             sleep 3
             continue
         fi
@@ -140,21 +140,21 @@ function menu_input_port_2() {
 
         # Validasi port container
         if check_port_container ${port_container_2}; then
-            echo "${GREEN}Port container is valid, continue...${NC}"
+            echo -e "${GREEN}Port container is valid, continue...${NC}"
             sleep 3
         else
-            echo "${RED}Port container invalid, please re-enter!${NC}"
+            echo -e "${RED}Port container invalid, please re-enter!${NC}"
             sleep 3
             continue
         fi
 
         # Validasi port host
         if check_port_host ${port_host_2}; then
-            echo "${GREEN}Port host is valid, continue...${NC}"
+            echo -e "${GREEN}Port host is valid, continue...${NC}"
             sleep 3
             break
         else
-            echo "${RED}Port host is invalid, please re-enter!${NC}"
+            echo -e "${RED}Port host is invalid, please re-enter!${NC}"
             sleep 3
             continue
         fi
@@ -179,7 +179,7 @@ function lanjut_port_forward() {
         elif [[ "${yn_lanjut_port_forward,,}" == "no" || "${yn_lanjut_port_forward,,}" == "n" ]]; then
             return 1
         else
-            echo "${RED}Invalid, masukkan pilihan yang benar!${NC}"
+            echo -e "${RED}Invalid, masukkan pilihan yang benar!${NC}"
             continue
         fi
 
@@ -275,6 +275,8 @@ while true; do
         clear
     else
         clear
+        echo -e "${RED}Invalid, masukkan pilihan yang benar!${NC}"
+        sleep 3
     fi
 
 done
