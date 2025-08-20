@@ -231,6 +231,7 @@ while true; do
 
     ### Meneruskan nilai nama container
     if is_valid_podman_container_name "$nama_container"; then
+        echo ""
         echo -e "${GREEN}'$nama_container' is a valid name.${NC}"
         sleep 5
         break
