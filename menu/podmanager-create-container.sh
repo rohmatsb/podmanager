@@ -223,6 +223,30 @@ function check_port_host() {
     # return exit code 1 atau 0
 }
 
+function pilih_images() {
+
+    echo "================"
+    echo "Create container"
+    echo "================"
+    echo ""
+    echo "Menampilkan daftar container images yang telah di download..."
+    sleep 3
+
+    clear
+
+    echo "================"
+    echo "Create container"
+    echo "================"
+    echo ""
+    echo "Daftar images"
+    echo "--------------"
+    echo ""
+    echo "1. "
+
+    # Using this command 
+    # mapfile -t images < <(podman images | tail -n +2 | awk '{print $1 ":" $2}')
+}
+
 function summary_screen() {
     echo "================"
     echo "Create container"
