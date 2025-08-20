@@ -274,7 +274,7 @@ while true; do
     elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
         clear
     else
-        clear
+        echo ""
         echo -e "${RED}Invalid, masukkan pilihan yang benar!${NC}"
         sleep 3
     fi
