@@ -94,6 +94,7 @@ function menu_input_port_1() {
         echo ""
         echo "Masukkan port host machine (port outside container)"
         read -p "Input port : " port_host_1
+        echo ""
 
         # Validasi port container
         if check_port_container ${port_container_1}; then
@@ -131,6 +132,7 @@ function menu_input_port_2() {
         echo ""
         echo "Masukkan port host machine (port outside container)"
         read -p "Input port : " port_host_2
+        echo ""
 
         # Validasi port container
         if check_port_container ${port_container_2}; then
@@ -231,7 +233,6 @@ while true; do
 
     ### Meneruskan nilai nama container
     if is_valid_podman_container_name "$nama_container"; then
-        echo ""
         echo -e "${GREEN}'$nama_container' is a valid name.${NC}"
         sleep 5
         break
