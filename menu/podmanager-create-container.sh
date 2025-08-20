@@ -9,11 +9,15 @@ CYAN='\e[0;36m'
 WHITE='\e[0;37m'
 
 #### Deklarasi Variabel Global ####
+
 nama_container=""
+
 port_container_1=""
-port_container_2=""
 port_host_1=""
+
+port_container_2=""
 port_host_2=""
+
 #### Selesai Deklarasi Variabel Global ####
 
 #############################################
