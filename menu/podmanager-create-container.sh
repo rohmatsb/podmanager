@@ -223,6 +223,19 @@ function check_port_host() {
     # return exit code 1 atau 0
 }
 
+function summary_screen() {
+    echo "================"
+    echo "Create container"
+    echo "================"
+    echo ""
+    echo "SUMMARY"
+    echo "-------"
+    echo ""
+    echo "Container name : $nama_container"
+
+    # Belum selesai, akan dilanjutkan
+}
+
 ##############################################
 #### Selesai mendefinisikan fungsi global ####
 ##############################################
