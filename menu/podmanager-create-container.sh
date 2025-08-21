@@ -29,9 +29,9 @@ image_pilihan=""
 # Menu input nama container
 function input_container_name() {
     clear
-    echo "========"
+    echo "================"
     echo "Create container"
-    echo "========"
+    echo "================"
     echo ""
     read -p "Enter container name : " nama_container
     echo ""
@@ -77,9 +77,9 @@ function is_valid_podman_container_name() {
 # Apakah ingin forward port (menu tanya)
 function menu_tanya_forward_port() {
     clear
-    echo "========"
+    echo "================"
     echo "Create container"
-    echo "========"
+    echo "================"
     echo ""
     echo "Do you want to forward port?"
     read -p "Yes or No : " yn_portforward
@@ -91,9 +91,9 @@ function menu_input_port_1() {
 
     while true; do
         clear
-        echo "========"
+        echo "================"
         echo "Create container"
-        echo "========"
+        echo "================"
         echo ""
         echo "Masukkan port yang ingin kamu forward (port inside container)"
         read -p "Input port : " port_container_1
@@ -129,9 +129,9 @@ function menu_input_port_2() {
 
     while true; do
         clear
-        echo "========"
+        echo "================"
         echo "Create container"
-        echo "========"
+        echo "================"
         echo ""
         echo "Masukkan port yang ingin kamu forward (port inside container)"
         read -p "Input port : " port_container_2
@@ -168,9 +168,9 @@ function lanjut_port_forward() {
 
     while true; do
         clear
-        echo "========"
+        echo "================"
         echo "Create container"
-        echo "========"
+        echo "================"
         echo ""
         echo "Forward port lain?"
         read -p "Yes or No : " yn_lanjut_port_forward
@@ -226,7 +226,7 @@ function check_port_host() {
 }
 
 function pilih_images() {
-
+    clear
     echo "================"
     echo "Create container"
     echo "================"
@@ -295,11 +295,11 @@ while true; do
     ### Meneruskan nilai nama container
     if is_valid_podman_container_name "$nama_container"; then
         echo -e "${GREEN}'$nama_container' is a valid name.${NC}"
-        sleep 5
+        sleep 3
         break
     else
         echo -e "${RED}'$nama_container' is NOT a valid name.${NC}"
-        sleep 5
+        sleep 3
     fi
 
 done
