@@ -234,6 +234,10 @@ function pilih_images() {
 
     clear
 
+    # buat daftar images podman menjadi array, disimpan ke variabel daftar_podman_images
+    mapfile -t daftar_podman_images < <(podman images | tail -n +2 | awk '{print $1}')
+
+    # echo ulang menu atas
     echo "================"
     echo "Create container"
     echo "================"
@@ -241,10 +245,13 @@ function pilih_images() {
     echo "Daftar images"
     echo "--------------"
     echo ""
-    echo "1. "
-
-    # Using this command 
-    # mapfile -t images < <(podman images | tail -n +2 | awk '{print $1 ":" $2}')
+    
+    # print semua value yang ada di array
+    counter=1
+    for item in "${daftar_podman_images[@]}"; do
+        echo "$counter. $item"
+        ((counter++))
+    done
 }
 
 function summary_screen() {
@@ -264,7 +271,7 @@ function summary_screen() {
 #### Selesai mendefinisikan fungsi global ####
 ##############################################
 
-# Menggunakan while-true agar terjadi pengulangan jika nilai yang dimasukkan pengguna salah
+# Section memasukkan nama container
 while true; do
 
     # clear dulu
@@ -285,7 +292,7 @@ while true; do
 
 done
 
-# While-true lagi, untuk menanyakan apakah lanjut port forward
+# Section port forwarding
 while true; do
 
     # clear dulu
@@ -309,7 +316,7 @@ while true; do
         break
 
     elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
-        clear
+        break
     else
         echo ""
         echo -e "${RED}Invalid, masukkan pilihan yang benar!${NC}"
@@ -317,3 +324,6 @@ while true; do
     fi
 
 done
+
+# Section memilih daftar podman images yang telah di download
+pilih_images
