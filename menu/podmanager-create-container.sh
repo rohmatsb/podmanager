@@ -260,6 +260,7 @@ function pilih_images() {
         else
             echo ""
             echo -e "${RED}Input invalid, silahkan masukkan ulang!${NC}"
+        fi
     done
 }
 
