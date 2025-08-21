@@ -18,6 +18,8 @@ port_host_1=""
 port_container_2=""
 port_host_2=""
 
+image_pilihan=""
+
 #### Selesai Deklarasi Variabel Global ####
 
 #############################################
@@ -246,11 +248,18 @@ function pilih_images() {
     echo "--------------"
     echo ""
     
-    # print semua value yang ada di array
-    counter=1
-    for item in "${daftar_podman_images[@]}"; do
-        echo "$counter. $item"
-        ((counter++))
+    # print pesan yang akan ditampilkan di bawah menu (saat input)
+    PS3="Masukkan angka pilihan : "
+
+    # print pilihan menggunakan select
+    select img in "${daftar_podman_images[@]}"; do
+        if [[ -n "img" ]]; then
+            echo ""
+            echo -e "Container akan dibuat menggunakan image ${GREEN}'${img}'${NC}"
+            image_pilihan="${img}"
+        else
+            echo ""
+            echo -e "${RED}Input invalid, silahkan masukkan ulang!${NC}"
     done
 }
 
