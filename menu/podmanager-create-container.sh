@@ -253,13 +253,15 @@ function pilih_images() {
 
     # print pilihan menggunakan select
     select img in "${daftar_podman_images[@]}"; do
-        if [[ -n "img" ]]; then
+        if [[ -n "${img}" ]]; then
             echo ""
             echo -e "Container akan dibuat menggunakan image ${GREEN}'${img}'${NC}"
             image_pilihan="${img}"
+            break
         else
             echo ""
             echo -e "${RED}Input invalid, silahkan masukkan ulang!${NC}"
+            sleep 3
         fi
     done
 }
