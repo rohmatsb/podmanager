@@ -267,6 +267,10 @@ function pilih_images() {
 }
 
 function summary_screen() {
+    
+    # clear
+    clear
+
     echo "================"
     echo "Create container"
     echo "================"
@@ -274,8 +278,8 @@ function summary_screen() {
     echo "SUMMARY"
     echo "-------"
     echo ""
-    echo "Container name    : ${nama_container}"
-    echo "Image pilihan     : ${image_pilihan}"
+    echo -e "Container name    : ${GREEN}${nama_container}${NC}"
+    echo -e "Image pilihan     : ${GREEN}${image_pilihan}${NC}"
     echo ""
     echo "Detail port forward (Container --> Host)"
     echo "1.) ${port_container_1} --> ${port_host_1}"
@@ -283,6 +287,7 @@ function summary_screen() {
     echo ""
     echo "Yakin sudah benar?"
     echo "Klik 'enter' untuk lanjut. Klik CTRL+C untuk keluar."
+    read -p "Pleasa confirm : " confirm_summary
 }
 
 ##############################################
