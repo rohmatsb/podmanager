@@ -287,6 +287,7 @@ function summary_screen() {
     echo ""
     echo "Yakin sudah benar?"
     echo "Klik 'enter' untuk lanjut. Klik CTRL+C untuk keluar."
+    echo ""
     read -p "Pleasa confirm : " confirm_summary
 }
 
