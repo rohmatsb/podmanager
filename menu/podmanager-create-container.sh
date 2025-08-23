@@ -255,7 +255,7 @@ function pilih_images() {
     select img in "${daftar_podman_images[@]}"; do
         if [[ -n "${img}" ]]; then
             echo ""
-            echo -e "Container akan dibuat menggunakan image ${GREEN}'${img}'${NC}"
+            echo -e "Container akan dibuat menggunakan image '${GREEN}${img}${NC}'"
             image_pilihan="${img}"
             break
         else
