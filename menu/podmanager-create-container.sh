@@ -274,9 +274,15 @@ function summary_screen() {
     echo "SUMMARY"
     echo "-------"
     echo ""
-    echo "Container name : $nama_container"
-
-    # Belum selesai, akan dilanjutkan
+    echo "Container name    : ${nama_container}"
+    echo "Image pilihan     : ${image_pilihan}"
+    echo ""
+    echo "Detail port forward (Container --> Host)"
+    echo "1.) ${port_container_1} --> ${port_host_1}"
+    echo "2.) ${port_container_2} --> ${port_host_2}"
+    echo ""
+    echo "Yakin sudah benar?"
+    echo "Klik 'enter' untuk lanjut. Klik CTRL+C untuk keluar."
 }
 
 ##############################################
@@ -339,3 +345,6 @@ done
 
 # Section memilih daftar podman images yang telah di download
 pilih_images
+
+# Section untuk mengkonfirmasi detail container yang akan dibuat
+summary_screen
