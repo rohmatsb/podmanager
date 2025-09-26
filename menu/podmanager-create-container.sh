@@ -307,8 +307,9 @@ while true; do
                 continue
             fi
 
-            break
+            break # break inside
         done
+        break # break outside
 
     elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
         break
