@@ -149,6 +149,7 @@ function lanjut_port_forward() {
             return 1
         else
             echo -e "${RED}Invalid, masukkan pilihan yang benar!${NC}"
+            sleep 2
             continue
         fi
 
