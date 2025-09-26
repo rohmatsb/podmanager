@@ -12,11 +12,8 @@ WHITE='\e[0;37m'
 
 nama_container=""
 
-port_container_1=""
-port_host_1=""
-
-port_container_2=""
-port_host_2=""
+container_ports=()          # declare empty array
+host_ports=()               # declare empty array
 
 image_pilihan=""
 
@@ -86,80 +83,50 @@ function menu_tanya_forward_port() {
 }
 
 # Menu Input Port
+function menu_input_ports() {
 
-function menu_input_port_1() {
+    # declare empty variabel lokal
+    local temp_container_port
+    local temp_host_port
 
     while true; do
+
+        # Menampilkan menu dan input terlebih dahulu
         clear
         echo "================"
         echo "Create container"
         echo "================"
         echo ""
-        echo "Masukkan port yang ingin kamu forward (port inside container)"
-        read -p "Input port : " port_container_1
+        echo "Enter the port to forward (port inside container)"
+        read -p "Input port: " temp_container_port
         echo ""
-        echo "Masukkan port host machine (port outside container)"
-        read -p "Input port : " port_host_1
+        echo "Enter the host machine port (port outside container)"
+        read -p "Input port: " temp_host_port
         echo ""
 
-        # Validasi port container
-        if check_port_container ${port_container_1}; then
-            echo -e "${GREEN}Port container is valid, continue...${NC}"
-            sleep 3
-        else
+        # Validate container port
+        if ! check_port_container "$temp_container_port"; then
             echo -e "${RED}Port container invalid, please re-enter!${NC}"
             sleep 3
             continue
         fi
-
-        # Validasi port host
-        if check_port_host ${port_host_1}; then
-            echo -e "${GREEN}Port host is valid, continue...${NC}"
-            sleep 3
-            break
-        else
-            echo -e "${RED}Port host is invalid, please re-enter!${NC}"
-            sleep 3
-            continue
-        fi
-    done
-}
-
-function menu_input_port_2() {
-
-    while true; do
-        clear
-        echo "================"
-        echo "Create container"
-        echo "================"
-        echo ""
-        echo "Masukkan port yang ingin kamu forward (port inside container)"
-        read -p "Input port : " port_container_2
-        echo ""
-        echo "Masukkan port host machine (port outside container)"
-        read -p "Input port : " port_host_2
-        echo ""
-
-        # Validasi port container
-        if check_port_container ${port_container_2}; then
-            echo -e "${GREEN}Port container is valid, continue...${NC}"
-            sleep 3
-        else
-            echo -e "${RED}Port container invalid, please re-enter!${NC}"
+        
+        # Validate host port
+        if ! check_port_host "$temp_host_port"; then
+            echo -e "${RED}Port host is invalid or already in use, please re-enter!${NC}"
             sleep 3
             continue
         fi
 
-        # Validasi port host
-        if check_port_host ${port_host_2}; then
-            echo -e "${GREEN}Port host is valid, continue...${NC}"
-            sleep 3
-            break
-        else
-            echo -e "${RED}Port host is invalid, please re-enter!${NC}"
-            sleep 3
-            continue
-        fi
+        # Kalo keduanya valid, maka tambahkan ke array yang sudah didefinisikan
+        container_ports+=("$temp_container_port")
+        host_ports+=("$temp_host_port")
+
+        # Tampilkan pesan port mapping
+        echo -e "${GREEN}Port mapping ${temp_container_port} -> ${temp_host_port} added.${NC}"
+        sleep 2
+        break # Exit the while loop
+
     done
 }
 
@@ -282,8 +249,13 @@ function summary_screen() {
     echo -e "Image pilihan     : ${GREEN}${image_pilihan}${NC}"
     echo ""
     echo "Detail port forward (Container --> Host)"
-    echo "1.) ${port_container_1} --> ${port_host_1}"
-    echo "2.) ${port_container_2} --> ${port_host_2}"
+
+    local count=${#container_ports[@]}
+
+    for (( i=0; i<=5; i++ )); do
+    echo "${container_ports[$i]} --> ${host_ports[$i]}
+    done
+
     echo ""
     echo "Yakin sudah benar?"
     echo "Klik 'enter' untuk lanjut. Klik CTRL+C untuk keluar."
@@ -327,17 +299,16 @@ while true; do
 
     # if-else apakah mau port forward
     if [[ "${yn_portforward,,}" == "yes" || "${yn_portforward,,}" == "y" ]]; then
-        
-        # Tampilkan menu pertama
-        menu_input_port_1
-        
-        # if-else lanjut atau tidak
-        if lanjut_port_forward; then
-            menu_input_port_2
-        fi
+        # pengulangan agar bisa masukkan multi ports
+        while true; do
+            menu_input_ports
 
-        # selesai
-        break
+            if lanjut_port_forward; then
+                continue
+            fi
+
+            break
+        done
 
     elif [[ "${yn_portforward,,}" == "no" || "${yn_portforward,,}" == "n" ]]; then
         break
