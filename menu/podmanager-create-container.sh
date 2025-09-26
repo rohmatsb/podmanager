@@ -253,7 +253,7 @@ function summary_screen() {
     local count=${#container_ports[@]}
 
     for (( i=0; i<=5; i++ )); do
-    echo "${container_ports[$i]} --> ${host_ports[$i]}
+    echo "${container_ports[$i]} --> ${host_ports[$i]}"
     done
 
     echo ""
