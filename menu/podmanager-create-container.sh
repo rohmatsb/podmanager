@@ -236,7 +236,7 @@ function pilih_images() {
     # print pesan tips jika tidak ada podman images
     echo ""
     echo -e "${MAGENTA}(Tips) Jika tidak terlihat apa-apa di halaman ini, silahkan pull image terlebih dahulu di menu pull images.${NC}"
-    sleep 3
+    sleep 5
 }
 
 function summary_screen() {
