@@ -232,6 +232,11 @@ function pilih_images() {
             sleep 3
         fi
     done
+
+    # print pesan tips jika tidak ada podman images
+    echo ""
+    echo "Tips  : Jika tidak terlihat apa-apa di halaman ini, silahkan pull image terlebih dahulu di menu pull images."
+    sleep 3
 }
 
 function summary_screen() {
