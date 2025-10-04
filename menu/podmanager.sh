@@ -19,7 +19,10 @@ while true; do
     echo "1. Create container"
     echo "2. List all existing container"
     echo "3. Delete container"
-    echo "4. Exit"
+    echo "4. Pull images"
+    echo "5. List all existing podman images"
+    echo "6. Delete podman images"
+    echo "7. Exit"
     echo "==============="
     echo ""
 
