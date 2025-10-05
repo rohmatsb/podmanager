@@ -205,7 +205,7 @@ function pilih_images() {
     clear
 
     # buat daftar images podman menjadi array, disimpan ke variabel daftar_podman_images
-    mapfile -t daftar_podman_images < <(podman images | tail -n +2 | awk '{print $1}')
+    mapfile -t daftar_podman_images < <(podman images --format "{{.Repository}}")
 
     # echo ulang menu atas
     echo "================"

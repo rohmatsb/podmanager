@@ -25,6 +25,7 @@ function menu {
     echo ""
     echo "Dibawah ini adalah list container yang telah dibuat :"
     echo ""
-    
 
+    mapfile -t daftar_podman_container < <(podman ps -a --format "{{.Names}}")
+    
 }
