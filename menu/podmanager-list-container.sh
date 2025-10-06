@@ -39,7 +39,7 @@ function menu {
             if [[ -n "${cont}" ]]; then
                 echo ""
                 echo -e "Mengecek detail container ${GREEN}${cont}${NC}..."
-                break
+                break 2
             else
                 echo ""
                 echo -e "${RED}Input invalid, silahkan masukkan ulang!${NC}"
