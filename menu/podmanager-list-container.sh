@@ -19,6 +19,7 @@ cont=""  # container yang akan dicek
 ###########################################
 
 function menu {
+    clear
     echo "==============="
     echo "List containers"
     echo "==============="
@@ -42,12 +43,13 @@ function menu {
             echo ""
             echo -e "${RED}Input invalid, silahkan masukkan ulang!${NC}"
             sleep 3
+            continue 2
         fi
     done
 }
 
-=====================
-=== START RUNNING ===
-=====================
+#####################
+### START RUNNING ###
+#####################
 
 menu
