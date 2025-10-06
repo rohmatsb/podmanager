@@ -19,32 +19,34 @@ cont=""  # container yang akan dicek
 ###########################################
 
 function menu {
-    clear
-    echo "==============="
-    echo "List containers"
-    echo "==============="
-    echo ""
-    echo "Dibawah ini adalah list container yang telah dibuat :"
-    echo ""
+    while true; do
+        clear
+        echo "==============="
+        echo "List containers"
+        echo "==============="
+        echo ""
+        echo "Dibawah ini adalah list container yang telah dibuat :"
+        echo ""
 
-    # memasukkan daftar container yang ada ke dalam array
-    mapfile -t daftar_podman_container < <(podman ps -a --format "{{.Names}}")
+        # memasukkan daftar container yang ada ke dalam array
+        mapfile -t daftar_podman_container < <(podman ps -a --format "{{.Names}}")
 
-    # print pesan yang akan ditampilkan di bawah menu (saat input)
-    PS3="Masukkan angka pilihan : "
-    
-    # print pilihan menggunakan select
-    select cont in "${daftar_podman_container[@]}"; do
-        if [[ -n "${cont}" ]]; then
-            echo ""
-            echo -e "Mengecek detail container ${GREEN}${cont}${NC}..."
-            break
-        else
-            echo ""
-            echo -e "${RED}Input invalid, silahkan masukkan ulang!${NC}"
-            sleep 3
-            continue 2
-        fi
+        # print pesan yang akan ditampilkan di bawah menu (saat input)
+        PS3="Masukkan angka pilihan : "
+        
+        # print pilihan menggunakan select
+        select cont in "${daftar_podman_container[@]}"; do
+            if [[ -n "${cont}" ]]; then
+                echo ""
+                echo -e "Mengecek detail container ${GREEN}${cont}${NC}..."
+                break
+            else
+                echo ""
+                echo -e "${RED}Input invalid, silahkan masukkan ulang!${NC}"
+                sleep 3
+                continue 2
+            fi
+        done
     done
 }
 
