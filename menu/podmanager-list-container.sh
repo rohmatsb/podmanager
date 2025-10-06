@@ -9,8 +9,8 @@ CYAN='\e[0;36m'
 WHITE='\e[0;37m'
 
 ### Deklarasi variabel global ###
- # var1=''
- # var2=''
+daftar_podman_container=()
+cont=""  # container yang akan dicek
 
 ### Selesai deklarasi variabel global ###
 
@@ -26,6 +26,26 @@ function menu {
     echo "Dibawah ini adalah list container yang telah dibuat :"
     echo ""
 
+    # memasukkan daftar container yang ada ke dalam array
     mapfile -t daftar_podman_container < <(podman ps -a --format "{{.Names}}")
+
+    # print pesan yang akan ditampilkan di bawah menu (saat input)
+    PS3="Masukkan angka pilihan : "
+    
+    # print pilihan menggunakan select
+    select cont in "${daftar_podman_container[@]}"; do
+        if [[ -n "${cont}" ]]; then
+            echo ""
+            echo -e "Mengecek detail container ${GREEN}${cont}${NC}..."
+            break
+        else
+            echo ""
+            echo -e "${RED}Input invalid, silahkan masukkan ulang!${NC}"
+            sleep 3
+        fi
+    done
+}
+
+function detail_container {
     
 }
