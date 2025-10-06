@@ -46,6 +46,8 @@ function menu {
     done
 }
 
-function detail_container {
-    
-}
+===================
+=== Main Script ===
+===================
+
+menu
