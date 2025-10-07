@@ -12,6 +12,8 @@ WHITE='\e[0;37m'
 daftar_podman_container=()
 cont=""  # container yang akan dicek
 
+host_ports=()
+container_ports=()
 ### Selesai deklarasi variabel global ###
 
 ###########################################
@@ -50,8 +52,33 @@ function menu {
     done
 }
 
+function array_ports {
+    host_ports=$(podman ps -a --filter name=${cont} --format json | jq '.[].Ports.[].host_port')
+    container_ports=$(podman ps -a --filter name=${cont} --format json | jq '.[].Ports.[].container_port')
+}
+
+function detail_container {
+    clear
+    echo "================"
+    echo "DETAIL CONTAINER
+    echo "================"
+    echo ""
+    echo "Nama      : ${cont}
+    echo "Image     : $(podman ps -a --filter name=my-app-server --format json | jq '.[].Image')
+    echo ""
+    echo "Detail Port Mapping"
+
+    local count=${#container_ports[@]}
+
+    for (( i=0; i<${count}; i++ )); do
+    echo "${container_ports[$i]} --> ${host_ports[$i]}"
+    done
+}
+
 #####################
 ### START RUNNING ###
 #####################
 
 menu
+array_ports
+detail_container
