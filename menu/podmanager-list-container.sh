@@ -63,8 +63,8 @@ function detail_container {
     echo "DETAIL CONTAINER
     echo "================"
     echo ""
-    echo "Nama      : ${cont}
-    echo "Image     : $(podman ps -a --filter name=my-app-server --format json | jq '.[].Image')
+    echo "Nama      : ${cont}"
+    echo "Image     : $(podman ps -a --filter name=my-app-server --format json | jq '.[].Image')"
     echo ""
     echo "Detail Port Mapping"
 
