@@ -63,15 +63,15 @@ function detail_container {
     echo "DETAIL CONTAINER"
     echo "================"
     echo ""
-    echo "Nama      : ${cont}"
-    echo "Image     : $(podman ps -a --filter name=my-app-server --format json | jq '.[].Image')"
+    echo -e "Nama      : ${GREEN}${cont}${NC}"
+    echo -e "Image     : ${GREEN}$(podman ps -a --filter name=my-app-server --format json | jq -r '.[].Image')${NC}"
     echo ""
-    echo "Detail Port Mapping (Container Ports --> Host Ports)"
+    echo -e "Detail Port Mapping (${GREEN}Container Ports --> Host Ports${NC})"
 
     local count=${#container_ports[@]}
 
     for (( i=0; i<${count}; i++ )); do
-    echo "${container_ports[$i]} --> ${host_ports[$i]}"
+    echo -e "${MAGENTA}${container_ports[$i]}${NC} --> ${MAGENTA}${host_ports[$i]}${NC}"
     done
 }
 
