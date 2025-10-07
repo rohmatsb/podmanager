@@ -66,7 +66,7 @@ function detail_container {
     echo -e "Nama      : ${GREEN}${cont}${NC}"
     echo -e "Image     : ${GREEN}$(podman ps -a --filter name=my-app-server --format json | jq -r '.[].Image')${NC}"
     echo ""
-    echo -e "Detail Port Mapping (${GREEN}Container Ports --> Host Ports${NC})"
+    echo -e "Detail Port Mapping (${GREEN}Container Ports${NC} --> ${GREEN}Host Ports${NC})"
 
     local count=${#container_ports[@]}
 
