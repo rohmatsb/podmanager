@@ -60,7 +60,7 @@ function array_ports {
 function detail_container {
     clear
     echo "================"
-    echo "DETAIL CONTAINER
+    echo "DETAIL CONTAINER"
     echo "================"
     echo ""
     echo "Nama      : ${cont}"
