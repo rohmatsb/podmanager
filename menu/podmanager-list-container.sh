@@ -53,8 +53,8 @@ function menu {
 }
 
 function array_ports {
-    host_ports=$(podman ps -a --filter name=${cont} --format json | jq '.[].Ports.[].host_port')
-    container_ports=$(podman ps -a --filter name=${cont} --format json | jq '.[].Ports.[].container_port')
+    mapfile -t host_ports < <(podman ps -a --filter name=${cont} --format json | jq '.[].Ports.[].host_port')
+    mapfile -t container_ports < <(podman ps -a --filter name=${cont} --format json | jq '.[].Ports.[].container_port')
 }
 
 function detail_container {
