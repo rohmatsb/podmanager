@@ -33,8 +33,11 @@ while true; do
     case $pilihan in
     1) clear && podmanager-create-container ; break ;;
     2) clear && podmanager-list-container ; break ;;
-    3) clear && podmanager-delete-container ; break ;;
-    4) exit ;;
+    3) clear && podmanager-del-container ; break ;;
+    4) clear && podmanager-pull-images ; break ;;
+    5) clear && podmanager-list-images ; break ;;
+    6) clear && podmanager-del-images ; break ;;
+    7) # exit
     *) clear && echo "Silakan masukkan pilihan yang benar!" && sleep 3 && clear ;;
     esac # Menutup case
 
