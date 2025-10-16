@@ -9,7 +9,9 @@ CYAN='\e[0;36m'
 WHITE='\e[0;37m'
 
 # Deklarasi variabel global
-
+# var=1
+# var=""
+# var=()
 # Selesai mendeklarasikan var global
 
 ###########################################
@@ -39,10 +41,11 @@ function list_images() {
     echo "--------------"
     echo ""
     
+    n=1  # untuk digunakan di for-loop
+
     for imgs in "${daftar_podman_images[@]}"; do
-    n=1
     echo "${n}. ${imgs}"
-    n++
+    n=$((n + 1))
     done
 }
 
