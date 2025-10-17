@@ -13,7 +13,6 @@ akan_dibuka=""
 
 # Mendefinisikan fungsi-fungsi global
 function menu_masuk {
-    # memasukkan daftar nama container kedalam array
     while true; do
         clear
         echo "================="
@@ -32,7 +31,7 @@ function menu_masuk {
         # print pilihan menggunakan select
         select cont in "${daftar_podman_container[@]}"; do
             if [[ -n "${cont}" ]]; then
-                akan_dihapus=${cont}
+                akan_dibuka=${cont}
                 break 2
             else
                 echo ""
@@ -56,26 +55,20 @@ function yn_enter_container {
     read -p "Masukkan pilihan : " yn_enter
 }
 
-function entering {
-    podman #### ${akan_dibuka} #aksi membuka
+function check_for_running {
+    running_container=()
+    running_container=$(podman ps --format json | jq -r ".[].Names.[]")
 
-    clear
-    echo "================="
-    echo "Enter container"
-    echo "================="
-    echo ""
-    echo -e "Membuka container ${akan_dibuka}"
+    
 }
 
-###################################################
-### Selesai mendefinisikan fungsi-fungsi global ###
-###################################################
-
+##### Menjalankan script utama #####
 menu_masuk
 yn_enter_container
 
 if [[ "${yn_enter,,}" == "yes" || "${yn_enter,,}" == "y" ]]; then
-    entering
+    check_for_running
+
 elif [[ "${yn_enter,,}" == "no" || "${yn_enter,,}" == "n" ]]; then
     exit
 else

@@ -269,6 +269,10 @@ function summary_screen() {
     read -p "Pleasa confirm : " confirm_summary
 }
 
+function creating_container {
+    
+}
+
 ##############################################
 #### Selesai mendefinisikan fungsi global ####
 ##############################################
@@ -332,3 +336,5 @@ pilih_images
 
 # Section untuk mengkonfirmasi detail container yang akan dibuat
 summary_screen
+
+# Section creating
