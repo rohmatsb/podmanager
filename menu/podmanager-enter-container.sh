@@ -53,27 +53,35 @@ function yn_enter_container {
     echo ""
     echo "Enter y/n/yes/no (case insensitive)"
     read -p "Masukkan pilihan : " yn_enter
+
+    if [[ "${yn_enter,,}" == "yes" || "${yn_enter,,}" == "y" ]]; then
+        : #do-nothing-and-continue-script
+    elif [[ "${yn_enter,,}" == "no" || "${yn_enter,,}" == "n" ]]; then
+        podmanager
+    else
+        echo ""
+        echo -e "${RED}Invalid, masukkan pilihan yang benar!${NC}"
+        sleep 2
+        continue
+    fi
 }
 
 function check_for_running {
     running_container=()
     running_container=$(podman ps --format json | jq -r ".[].Names.[]")
 
-    
+    for rcont in "${running_container[@]}"; do
+        if [[ "${akan_dibuka}" == "${rcont}" ]]; then
+            : #do-nothing-and-continue-sc
+        else
+            podman start ${akan_dibuka}
+        fi
+    done
 }
 
 ##### Menjalankan script utama #####
 menu_masuk
 yn_enter_container
+check_for_running
 
-if [[ "${yn_enter,,}" == "yes" || "${yn_enter,,}" == "y" ]]; then
-    check_for_running
-
-elif [[ "${yn_enter,,}" == "no" || "${yn_enter,,}" == "n" ]]; then
-    exit
-else
-    echo ""
-    echo -e "${RED}Invalid, masukkan pilihan yang benar!${NC}"
-    sleep 2
-    continue
-fi
+podman exec -it ${akan_dibuka} /bin/bash
