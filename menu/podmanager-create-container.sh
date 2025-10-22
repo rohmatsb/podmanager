@@ -270,7 +270,16 @@ function summary_screen() {
 }
 
 function creating_container {
-    
+    # membuat variabel array kosong, untuk menyimpan loop command "-p ports:ports"
+    local ports=()
+
+    # loop command
+    for item in "${!container_ports[@]}"; do
+        ports+=(-p "${host_ports[$i]}:${container_ports[$i]}")
+    done
+
+    # final creation
+    podman create -it --name ${nama_container} "${ports[@]}" ${image_pilihan} /bin/bash
 }
 
 ##############################################
@@ -338,3 +347,4 @@ pilih_images
 summary_screen
 
 # Section creating
+creating_container
