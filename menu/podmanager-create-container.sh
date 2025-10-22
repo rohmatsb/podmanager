@@ -275,7 +275,7 @@ function creating_container {
 
     # loop command
     for item in "${!container_ports[@]}"; do
-        ports+=(-p "${host_ports[$i]}:${container_ports[$i]}")
+        ports+=(-p "${host_ports[$item]}:${container_ports[$item]}")
     done
 
     # final creation
