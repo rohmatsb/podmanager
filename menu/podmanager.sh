@@ -39,7 +39,7 @@ while true; do
     5) clear && podmanager-pull-images ; break ;;
     6) clear && podmanager-list-images ; break ;;
     7) clear && podmanager-del-images ; break ;;
-    8) exit 0
+    8) exit 0 ;;
     *) clear && echo "Silakan masukkan pilihan yang benar!" && sleep 3 && clear ;;
     esac # Menutup case
 
