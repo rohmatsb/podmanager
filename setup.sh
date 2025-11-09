@@ -1,8 +1,8 @@
 # Update terlebih dahulu
-sudo apt update
+apt update
 
 # Install paket yang dibutuhkan
-sudo apt install podman uidmap slirp4netns -y
+apt install podman uidmap slirp4netns -y
 
 # Mengunduh file yang dibutuhkan
 wget https://raw.githubusercontent.com/rohmatsb/podmanager/main/menu/podmanager-create-container.sh
@@ -15,7 +15,7 @@ wget https://raw.githubusercontent.com/rohmatsb/podmanager/main/menu/podmanager-
 wget https://raw.githubusercontent.com/rohmatsb/podmanager/main/menu/podmanager.sh
 
 # Make directory podmanager
-mkdir "$HOME/podmanager/bin"
+mkdir -p "$HOME/podmanager/bin"
 
 # Pindahkan file sekalian rename, ke $HOME/podmanager/bin
 mv podmanager-create-container.sh "$HOME/podmanager/bin/podmanager-create-container"
