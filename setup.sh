@@ -14,6 +14,9 @@ wget https://raw.githubusercontent.com/rohmatsb/podmanager/main/menu/podmanager-
 wget https://raw.githubusercontent.com/rohmatsb/podmanager/main/menu/podmanager-pull-images.sh
 wget https://raw.githubusercontent.com/rohmatsb/podmanager/main/menu/podmanager.sh
 
+# Make directory podmanager
+mkdir "$HOME/podmanager/bin"
+
 # Pindahkan file sekalian rename, ke $HOME/podmanager/bin
 mv podmanager-create-container.sh "$HOME/podmanager/bin/podmanager-create-container"
 mv podmanager-del-container.sh "$HOME/podmanager/bin/podmanager-del-container"
